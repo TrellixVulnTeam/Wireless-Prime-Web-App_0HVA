@@ -88,10 +88,6 @@
             
     <script>
     
-    
-    
-    
-        
          // Initialize Firebase
       var config = {
             apiKey: "AIzaSyC4jsvf0PsZvYTH_25jXLAdLXpDVFg1uhw",
@@ -103,18 +99,10 @@
             };
         firebase.initializeApp(config);
         var databaseRef = firebase.database().ref();
-    
-        if (firebase.auth().currentUser !== null) {
-            alert("user id: " + firebase.auth().currentUser.uid);
-        }
-            
-    
+
         $('#loginWelcomeText').html('Welcome to login page')
         $('#welcomeHomeText').html('Welcome')
                 
-            // var fireBaseUserName = firebase.auth().currentUser
-    
-    
                 // Storing data to local storage //
                 function storeDataToLocalStorage(){
                     var inputUsername= $('#userNameId').val();
@@ -129,13 +117,13 @@
                 var passwordValue = $('#passwordId').val();
                 firebase.auth().signInWithEmailAndPassword(userNameValue, passwordValue).then((user) =>{
                     storeDataToLocalStorage();
-                    user.email = fireBaseUserName 
                     var getUserNamelocalStorage = localStorage.getItem('username')
                     var getPasswordlocalStorage = localStorage.getItem('password')
-        
+                    loginObserver()
+                    location.reload()
                     // Comparing local storage (username) vs firebase (username) //
-                    if(getUserNamelocalStorage === user.email){ loginObserver() }
-                    else{ loginObserver() }
+                    // if(getUserNamelocalStorage === user.email){ loginObserver() }
+                    // else{ loginObserver() }
                     }).catch((error) => {
                         $('#loginCheckerText').html(error.code);
                     })};
@@ -146,12 +134,12 @@
                     var getPassword = localStorage.getItem('password')
                     if(getUserName !== null && getPassword !== null)
                     {
-                        $('#homeDiv').show()
-                        $('#loginDiv').hide()
+                        $('#homeDiv').show('fast')
+                        $('#loginDiv').hide('fast')
                     }
                     else{
-                        $('#homeDiv').hide()
-                        $('#loginDiv').show()
+                        $('#homeDiv').hide('fast')
+                        $('#loginDiv').show('fast')
                     }
                 }
                 window.onload(loginObserver());
@@ -172,7 +160,6 @@
                 function logOutPhoneApp(){
                 var confirmingBeforeLogOut = prompt('Please enter the email associated with your account')
                 alert (confirmingBeforeLogOut)
-                
                 var fireBaseUserName =  firebase.auth().onAuthStateChanged((user) => {
                     if (confirmingBeforeLogOut === user.email){
                         alert(user.email);
@@ -184,7 +171,6 @@
     
                     })}
         
-    
              </script>
         </body>
         </html>
