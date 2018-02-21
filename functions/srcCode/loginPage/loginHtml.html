@@ -1,173 +1,194 @@
 
  <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="jquery-3.3.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-    <link rel="stylesheet" href="/loginStyle.css">
-    <script src="/loginScript.js"></script>
-
-    <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <script src="/path/to/jquery.cookie.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-
-
-    <style>
-    
-    body{
-    width:100%;
-    height: 100%;
-    background-color: whitesmoke
-}
-#loginDiv{
-    position: relative; 
-    left: 560
-    ;}
-
-#userNameId{
-position: relative;
-height: 4%;
-background-color: 'red';
-margin-top: 10%;
-border-bottom: .1px solid blue;
-border-top: none;
-border-left: none;
-border-right: none;
-}
-
-#passwordId{
-position: relative;
-height: 4%;
-background-color: 'red';
-border-bottom: .1px solid blue;
-border-top: none;
-border-left: none;
-border-right: none;
-}
-
-#signInButton{
-    width: 10%;
-    height: 3%;
-    border-color: blue;
-    border-radius: 5px }
-#loginCheckerText{
-        color: red;
-        font-size: 15px;
-        font-family: Helvetica;
-        }
-
-
-    </style>
-
-    <title>Home page</title>
-</head>
-<body>
-    
-    <form>
-    <div id="homeDiv">
-            <button onclick="logOut()">Logout</button><br/><br/>
-            <h1 id="welcomeHomeText"></h1><br/><br/>
-            <h1>Test</h1><br/><br/>
-            <button onclick="deleteUser()">Delete account </button><br/><br/>
-    </div>
-</form>
-
-    <form>
-        <div id="loginDiv">
-            <h1 id="loginWelcomeText"></h1>
-            <input type="text" id="userNameId" style="width:10%" placeholder="User name" > <br/><br/>
-            <input type="password" id="passwordId" style="width:10%" placeholder="Password"><br/><br/>
-            <Input type="button" onclick="userSignIn()" value="Sign in" id="signInButton"></Input>
-            <p id="loginCheckerText"></p>
-        </div>
-    </form>
-
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <script src="jquery-3.3.1.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+            <link rel="stylesheet" href="/loginStyle.css">
+            <script src="/loginScript.js"></script>
         
-         <script>
-          // Initialize Firebase
-          var config = {
+            <script type="text/javascript" src="js/jquery.cookie.js"></script>
+            <script src="/path/to/jquery.cookie.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        
+        
+            <style>
+            
+            body{
+            width:100%;
+            height: 100%;
+            background-color: whitesmoke
+        }
+        #loginDiv{
+            position: relative; 
+            left: 560
+            ;}
+        
+        #userNameId{
+        position: relative;
+        height: 4%;
+        background-color: 'red';
+        margin-top: 10%;
+        border-bottom: .1px solid blue;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        }
+        
+        #passwordId{
+        position: relative;
+        height: 4%;
+        background-color: 'red';
+        border-bottom: .1px solid blue;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        }
+        
+        #signInButton{
+            width: 10%;
+            height: 3%;
+            border-color: blue;
+            border-radius: 5px }
+        #loginCheckerText{
+                color: red;
+                font-size: 15px;
+                font-family: Helvetica;
+                }
+        
+        
+            </style>
+        
+            <title>Home page</title>
+        </head>
+        <body>
+            
+            <form>
+            <div id="homeDiv">
+                    <button onclick="logOut()">Logout</button><br/><br/>
+                    <h1 id="welcomeHomeText"></h1><br/><br/>
+                    <h1>Test</h1><br/><br/>
+                    <button onclick="logOutPhoneApp()">Sign out from phone app </button><br/><br/>
+            </div>
+        </form>
+        
+            <form>
+                <div id="loginDiv">
+                    <h1 id="loginWelcomeText"></h1>
+                    <input type="text" id="userNameId" style="width:10%" placeholder="User name" > <br/><br/>
+                    <input type="password" id="passwordId" style="width:10%" placeholder="Password"><br/><br/>
+                    <Input type="button" onclick="userSignIn()" value="Sign in" id="signInButton"></Input>
+                    <p id="loginCheckerText"></p>
+                </div>
+            </form>
+            
+    <script>
+    
+    
+    
+    
+        
+         // Initialize Firebase
+      var config = {
             apiKey: "AIzaSyC4jsvf0PsZvYTH_25jXLAdLXpDVFg1uhw",
             authDomain: "cinegearsuserslist.firebaseapp.com",
             databaseURL: "https://cinegearsuserslist.firebaseio.com",
             projectId: "cinegearsuserslist",
             storageBucket: "cinegearsuserslist.appspot.com",
             messagingSenderId: "934939093990"
-          };
-          firebase.initializeApp(config);
-        </script>
-
-     <script>
-
-$('#loginWelcomeText').html('Welcome to login page')
-
-$('#welcomeHomeText').html('Welcome')
-        
-
-        // Storing data to local storage //
-        function storeDataToLocalStorage(){
-            var inputUsername= $('#userNameId').val();
-            var inputPassword= $('#passwordId').val();
-            localStorage.setItem("username", inputUsername);
-            localStorage.setItem("password", inputPassword);
+            };
+        firebase.initializeApp(config);
+        var databaseRef = firebase.database().ref();
+    
+        if (firebase.auth().currentUser !== null) {
+            alert("user id: " + firebase.auth().currentUser.uid);
         }
-
-        // Sign in stage //
-        function userSignIn(){
-        var userNameValue = $('#userNameId').val();
-        var passwordValue = $('#passwordId').val();
-        firebase.auth().signInWithEmailAndPassword(userNameValue, passwordValue).then((user) =>{
-            storeDataToLocalStorage();
-            var getUserNamelocalStorage = localStorage.getItem('username')
-            var getPasswordlocalStorage = localStorage.getItem('password')
-
-            // Comparing local storage (username) vs firebase (username) //
-            if(getUserNamelocalStorage === user.email){ loginObserver() }
-            else{ loginObserver() }
-            }).catch((error) => {
-                $('#loginCheckerText').html(error.code);
-            })};
-
-            // To keep user logged in //
-            function loginObserver(){
-            var getUserName = localStorage.getItem('username')
-            var getPassword = localStorage.getItem('password')
-            if(getUserName !== null && getPassword !== null)
-            {
-                $('#homeDiv').show()
-                $('#loginDiv').hide()
-            }
-            else{
-                $('#homeDiv').hide()
-                $('#loginDiv').show()
-            }
-        }
-        window.onload(loginObserver());
+            
+    
+        $('#loginWelcomeText').html('Welcome to login page')
+        $('#welcomeHomeText').html('Welcome')
+                
+            // var fireBaseUserName = firebase.auth().currentUser
+    
+    
+                // Storing data to local storage //
+                function storeDataToLocalStorage(){
+                    var inputUsername= $('#userNameId').val();
+                    var inputPassword= $('#passwordId').val();
+                    localStorage.setItem("username", inputUsername);
+                    localStorage.setItem("password", inputPassword);
+                }
         
-        // Users logout function //
-        function logOut(){
-            firebase.auth().signOut().then(()=> 
-            {
-            localStorage.clear('username')
-            localStorage.clear('password')
-            location.reload()
-            })
-            .catch((error)=> {
-                alert(error.code)
-            });
-        };
-
-        // function deleteUser(){
-        //     prompt('Are you sure you want to permenantly delete your account')
-        // }
-
+                // Sign in stage //
+                function userSignIn(){
+                var userNameValue = $('#userNameId').val();
+                var passwordValue = $('#passwordId').val();
+                firebase.auth().signInWithEmailAndPassword(userNameValue, passwordValue).then((user) =>{
+                    storeDataToLocalStorage();
+                    user.email = fireBaseUserName 
+                    var getUserNamelocalStorage = localStorage.getItem('username')
+                    var getPasswordlocalStorage = localStorage.getItem('password')
         
-     </script>
-</body>
-</html>
-
-
-
+                    // Comparing local storage (username) vs firebase (username) //
+                    if(getUserNamelocalStorage === user.email){ loginObserver() }
+                    else{ loginObserver() }
+                    }).catch((error) => {
+                        $('#loginCheckerText').html(error.code);
+                    })};
+        
+                    // To keep user logged in //
+                    function loginObserver(){
+                    var getUserName = localStorage.getItem('username')
+                    var getPassword = localStorage.getItem('password')
+                    if(getUserName !== null && getPassword !== null)
+                    {
+                        $('#homeDiv').show()
+                        $('#loginDiv').hide()
+                    }
+                    else{
+                        $('#homeDiv').hide()
+                        $('#loginDiv').show()
+                    }
+                }
+                window.onload(loginObserver());
+                
+                // Users logout function //
+                function logOut(){
+                    firebase.auth().signOut().then(()=> 
+                    {
+                    localStorage.clear('username')
+                    localStorage.clear('password')
+                    location.reload()
+                    })
+                    .catch((error)=> {
+                        alert(error.code)
+                    });
+                };
+    
+                function logOutPhoneApp(){
+                var confirmingBeforeLogOut = prompt('Please enter the email associated with your account')
+                alert (confirmingBeforeLogOut)
+                
+                var fireBaseUserName =  firebase.auth().onAuthStateChanged((user) => {
+                    if (confirmingBeforeLogOut === user.email){
+                        alert(user.email);
+                        databaseRef.push({ emailAttached: user.email })
+                    }
+                    else{
+                        alert('email entered is wrong')
+                    }
+    
+                    })}
+        
+    
+             </script>
+        </body>
+        </html>
+        
+        
+        
+        
