@@ -157,19 +157,18 @@
                     });
                 };
     
-                function logOutPhoneApp(){
-                var confirmingBeforeLogOut = prompt('Please enter the email associated with your account')
-                alert (confirmingBeforeLogOut)
-                var fireBaseUserName =  firebase.auth().onAuthStateChanged((user) => {
-                    if (confirmingBeforeLogOut === user.email){
-                        alert(user.email);
-                        databaseRef.push({ emailAttached: user.email })
+    function logOutPhoneApp(){
+        var confirmingBeforeLogOut = prompt('Please enter the email associated with your account')
+        alert (confirmingBeforeLogOut)
+        var fireBaseUserName =  firebase.auth().onAuthStateChanged((user) => {
+            if (confirmingBeforeLogOut === user.email){
+                alert(user.email);
+                    databaseRef.push({ emailAttached: user.email })
                     }
                     else{
                         alert('email entered is wrong')
                     }
-    
-                    })}
+                })}
         
              </script>
         </body>
